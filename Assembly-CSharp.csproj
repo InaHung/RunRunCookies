@@ -64,9 +64,10 @@
     <Compile Include="Assets\Script\CoinSpawner.cs" />
     <Compile Include="Assets\Script\Coin.cs" />
     <Compile Include="Assets\Script\Score.cs" />
+    <Compile Include="Assets\Script\TurnToYellowBear.cs" />
+    <Compile Include="Assets\Script\MagnifyPlayer.cs" />
     <Compile Include="Assets\Script\Heart.cs" />
     <Compile Include="Assets\Script\HpBar.cs" />
-    <Compile Include="Assets\Script\MagnifyPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

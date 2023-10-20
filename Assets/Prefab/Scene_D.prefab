@@ -207,7 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d57fb63b4c4b21f4880418e8b867df3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneListIndex: 1
+  sceneListIndex: 3
   radius: 50
 --- !u!1 &7921546632062726043
 GameObject:
