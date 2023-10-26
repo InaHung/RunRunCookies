@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Player : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
     public Score score;
     public HpBar hpBar;
     public Map map;
+    public GameObject magnet;
     public void Awake()
     {
         ChangeState(State.Idle);
@@ -119,6 +121,8 @@ public class Player : MonoBehaviour
         {
             Barrier barrier = collision.gameObject.GetComponent<Barrier>();
             hpBar.DamageSetHp(barrier.damage);
+            map.TimeSlow();
+
         }   
         if(collision.transform.tag=="heart")
         {
@@ -126,6 +130,16 @@ public class Player : MonoBehaviour
             hpBar.TreatSetHp(heart.plusHp);
             Destroy(collision.gameObject);
         
+        }
+        if(collision.transform.tag=="magnet")
+        {
+            Destroy(collision.gameObject);
+            magnet.SetActive(true);
+            DOVirtual.DelayedCall(2f, () =>
+            {
+                magnet.SetActive(false);
+            });
+            
         }
 
     }

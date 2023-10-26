@@ -11,6 +11,7 @@ TagManager:
   - heart
   - scoreObject
   - jelly
+  - magnet
   layers:
   - Default
   - TransparentFX

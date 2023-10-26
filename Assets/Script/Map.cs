@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using DG.Tweening;
 
 public class Map : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Map : MonoBehaviour
     public List<Scene> aliveScenes = new List<Scene>();
     private float createPosition;
     private int sceneIndex;
+    public float slowTime;
 
     private void Awake()
     {
@@ -45,6 +47,14 @@ public class Map : MonoBehaviour
         newScene.transform.localPosition = new Vector3(createPosition, 0, 0);
         createPosition += newScene.radius;
         sceneIndex++;
+    }
+    public void TimeSlow()
+    {
+        Time.timeScale = slowTime;
+        DOVirtual.DelayedCall(0.5f, () =>
+         {
+             Time.timeScale = 1f;
+         });
     }
     
 }
