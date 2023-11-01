@@ -63,6 +63,7 @@
     <Compile Include="Assets\Script\Player.cs" />
     <Compile Include="Assets\Script\TweenSample.cs" />
     <Compile Include="Assets\Script\CoinSpawner.cs" />
+    <Compile Include="Assets\Script\TurnToCoin.cs" />
     <Compile Include="Assets\Script\Coin.cs" />
     <Compile Include="Assets\Script\Score.cs" />
     <Compile Include="Assets\Script\TurnToYellowBear.cs" />

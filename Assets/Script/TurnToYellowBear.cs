@@ -29,7 +29,7 @@ public class TurnToYellowBear : MonoBehaviour
                 });
         }
         if (collision.gameObject.tag == "jelly")
-        {
+        { 
             Instantiate(yellowBear, collision.transform.position, transform.rotation, collision.transform.parent);
             Destroy(collision.gameObject);
         }
