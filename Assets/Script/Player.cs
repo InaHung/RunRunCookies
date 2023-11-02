@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
 
     public void Slide()
     {
-        collider.size = new Vector2(collider.size.x, collider.size.y / 2);
+        collider.size = new Vector2(collider.size.x, collider.size.y / 3);
         collider.offset = new Vector2(collider.offset.x, colliderOffset);
         ChangeState(State.Slide);
 
