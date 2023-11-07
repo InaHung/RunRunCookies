@@ -12,6 +12,8 @@ TagManager:
   - scoreObject
   - jelly
   - magnet
+  - sprint
+  - magnify
   layers:
   - Default
   - TransparentFX

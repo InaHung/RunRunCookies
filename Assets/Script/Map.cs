@@ -56,5 +56,14 @@ public class Map : MonoBehaviour
              Time.timeScale = 1f;
          });
     }
-    
+    public void TimeFast(float fastTime)
+    {
+        Time.timeScale = fastTime;
+        DOVirtual.DelayedCall(5f, () =>
+        {
+            Time.timeScale = 1f;
+        });
+    }
+
+
 }

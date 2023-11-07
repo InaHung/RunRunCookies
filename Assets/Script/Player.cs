@@ -11,8 +11,10 @@ public class Player : MonoBehaviour
     public BoxCollider2D collider;
     public float colliderOffset;
     State curState;
+    SpecialState curSpecialState;
     Vector2 originColliderOffset;
     Vector2 originColliderSize;
+    Vector2 originPlayerSize;
     public Score score;
     public HpBar hpBar;
     public Map map;
@@ -22,6 +24,7 @@ public class Player : MonoBehaviour
         ChangeState(State.Idle);
         originColliderOffset = collider.offset;
         originColliderSize = collider.size;
+        originPlayerSize = transform.localScale;
     }
 
 
@@ -62,8 +65,10 @@ public class Player : MonoBehaviour
 
     public void ReturnToIdle()
     {
+        
         collider.size = originColliderSize;
         collider.offset = originColliderOffset;
+       
         ChangeState(State.Idle);
     }
 
@@ -97,11 +102,14 @@ public class Player : MonoBehaviour
 
 
     }
+    
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.tag == "floor")
+        if (collision.transform.tag == "floor"
+            )
         {
+
             ReturnToIdle();
             Debug.Log(map.transform.position.x);
         }
@@ -117,13 +125,6 @@ public class Player : MonoBehaviour
 
 
         }
-        if (collision.transform.tag == "barrier")
-        {
-            Barrier barrier = collision.gameObject.GetComponent<Barrier>();
-            hpBar.DamageSetHp(barrier.damage);
-            map.TimeSlow();
-
-        }   
         if(collision.transform.tag=="heart")
         {
             Heart heart=collision.transform.GetComponent<Heart>();
@@ -141,12 +142,66 @@ public class Player : MonoBehaviour
             });
             
         }
+        if(collision.transform.tag=="sprint")
+        {
+            ChangeSpecialState(SpecialState.Sprint);
+            Destroy(collision.gameObject);
+            map.TimeFast(2f);
+            DOVirtual.DelayedCall(2f, () =>
+            {
+                ChangeSpecialState(SpecialState.Normal);
+
+            });
+           
+        }
+        if (collision.transform.tag == "magnify")
+        {
+            ChangeSpecialState(SpecialState.Magnify);
+            transform.localScale = transform.localScale * 2;
+            Destroy(collision.gameObject);
+
+            DOVirtual.DelayedCall(2f, () =>
+            {
+                ChangeSpecialState(SpecialState.Normal);
+                transform.localScale = originPlayerSize;
+            });
+
+        }
+        if (collision.transform.tag == "barrier")
+        {
+            Barrier barrier = collision.GetComponent<Barrier>();
+            if (curSpecialState==SpecialState.Normal)
+            {
+                hpBar.DamageSetHp(barrier.damage);
+                map.TimeSlow();
+
+            }
+            else
+            {
+                score.UpdateScore(barrier.damage);
+                DOVirtual.DelayedCall(1f, () =>
+                {
+                    Destroy(collision.gameObject);
+                });
+               
+            }
+           
+
+        }
+        
+        
+
 
     }
     public void ChangeState(State nextState)
     {
         curState = nextState;
         Debug.Log(curState);
+    }
+    public void ChangeSpecialState(SpecialState nextSpecialState)
+    {
+        curSpecialState = nextSpecialState;
+        Debug.Log(curSpecialState);
     }
 }
 public enum State
@@ -155,7 +210,15 @@ public enum State
     Jump,
     Slide,
     TwiceJump,
+    
 }
+public enum SpecialState
+{
+    Sprint,
+    Magnify,
+    Normal,
+}
+
 
 
 
