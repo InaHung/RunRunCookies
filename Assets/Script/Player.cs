@@ -6,7 +6,7 @@ using DG.Tweening;
 public class Player : MonoBehaviour
 {
     public float jumpHeight;
-    public float slideHeight;
+
     public Rigidbody2D rigidbody;
     public BoxCollider2D collider;
     public float colliderOffset;
@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     public HpBar hpBar;
     public Map map;
     public GameObject magnet;
+    public float sprintSpeed;
     public void Awake()
     {
         ChangeState(State.Idle);
@@ -38,6 +39,7 @@ public class Player : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     Jump();
+                    Debug.Log("¸õ"+map.transform.position) ;
                 }
                 if (Input.GetKey(KeyCode.A))
                 {
@@ -65,10 +67,10 @@ public class Player : MonoBehaviour
 
     public void ReturnToIdle()
     {
-        
+
         collider.size = originColliderSize;
         collider.offset = originColliderOffset;
-       
+
         ChangeState(State.Idle);
     }
 
@@ -89,7 +91,7 @@ public class Player : MonoBehaviour
         {
             rigidbody.velocity = new Vector2(0, jumpHeight);
             ChangeState(State.Jump);
-            Debug.Log(map.transform.position.x);
+
         }
 
 
@@ -102,16 +104,15 @@ public class Player : MonoBehaviour
 
 
     }
-    
+
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.tag == "floor"
-            )
+        if (collision.transform.tag == "floor" )
         {
-
+            Debug.Log("­°¸¨"+map.transform.position);
             ReturnToIdle();
-            Debug.Log(map.transform.position.x);
+
         }
 
     }
@@ -119,20 +120,20 @@ public class Player : MonoBehaviour
     {
         if (collision.transform.tag == "scoreObject")
         {
-            Destroy(collision.gameObject);
-           Coin coin=collision.gameObject.GetComponent<Coin>();
-            score.UpdateScore(coin.point);
 
+            Coin coin = collision.gameObject.GetComponent<Coin>();
+            score.UpdateScore(coin.point);
+            Destroy(collision.gameObject);
 
         }
-        if(collision.transform.tag=="heart")
+        if (collision.transform.tag == "heart")
         {
-            Heart heart=collision.transform.GetComponent<Heart>();
+            Heart heart = collision.transform.GetComponent<Heart>();
             hpBar.TreatSetHp(heart.plusHp);
             Destroy(collision.gameObject);
-        
+
         }
-        if(collision.transform.tag=="magnet")
+        if (collision.transform.tag == "magnet")
         {
             Destroy(collision.gameObject);
             magnet.SetActive(true);
@@ -140,19 +141,19 @@ public class Player : MonoBehaviour
             {
                 magnet.SetActive(false);
             });
-            
+
         }
-        if(collision.transform.tag=="sprint")
+        if (collision.transform.tag == "sprint")
         {
             ChangeSpecialState(SpecialState.Sprint);
             Destroy(collision.gameObject);
-            map.TimeFast(2f);
+            map.TimeFast();
             DOVirtual.DelayedCall(2f, () =>
             {
                 ChangeSpecialState(SpecialState.Normal);
 
             });
-           
+
         }
         if (collision.transform.tag == "magnify")
         {
@@ -160,7 +161,7 @@ public class Player : MonoBehaviour
             transform.localScale = transform.localScale * 2;
             Destroy(collision.gameObject);
 
-            DOVirtual.DelayedCall(2f, () =>
+            DOVirtual.DelayedCall(4f, () =>
             {
                 ChangeSpecialState(SpecialState.Normal);
                 transform.localScale = originPlayerSize;
@@ -170,7 +171,7 @@ public class Player : MonoBehaviour
         if (collision.transform.tag == "barrier")
         {
             Barrier barrier = collision.GetComponent<Barrier>();
-            if (curSpecialState==SpecialState.Normal)
+            if (curSpecialState == SpecialState.Normal)
             {
                 hpBar.DamageSetHp(barrier.damage);
                 map.TimeSlow();
@@ -178,18 +179,20 @@ public class Player : MonoBehaviour
             }
             else
             {
-                score.UpdateScore(barrier.damage);
-                DOVirtual.DelayedCall(1f, () =>
+                 score.UpdateScore(barrier.damage);
+                Vector3 barrierPosition = collision.transform.position;
+                collision.transform.DOMove(barrierPosition + new Vector3(-7f, 2f, 0f), 0.3f)
+                .OnComplete(() =>
                 {
                     Destroy(collision.gameObject);
                 });
-               
+
             }
-           
+
 
         }
-        
-        
+
+
 
 
     }
@@ -210,13 +213,13 @@ public enum State
     Jump,
     Slide,
     TwiceJump,
-    
+
 }
 public enum SpecialState
 {
+    Normal,
     Sprint,
     Magnify,
-    Normal,
 }
 
 

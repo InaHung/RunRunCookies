@@ -12,11 +12,14 @@ public class Map : MonoBehaviour
     private float createPosition;
     private int sceneIndex;
     public float slowTime;
+    public float sprintSpeed;
+
+    private float originMoveSpeed;
 
     private void Awake()
     {
 
-
+        originMoveSpeed = moveSpeed;
         foreach (var aliveScene in aliveScenes)
         {
             aliveScene.OnEnterCheckPoint += createNextScene;
@@ -56,13 +59,16 @@ public class Map : MonoBehaviour
              Time.timeScale = 1f;
          });
     }
-    public void TimeFast(float fastTime)
+    public void TimeFast()
     {
-        Time.timeScale = fastTime;
-        DOVirtual.DelayedCall(5f, () =>
+        moveSpeed = sprintSpeed;
+
+        DOVirtual.DelayedCall(2f, () =>
         {
-            Time.timeScale = 1f;
+            moveSpeed = originMoveSpeed;
+            Debug.Log(moveSpeed);
         });
+       
     }
 
 

@@ -4,18 +4,25 @@ using UnityEngine;
 using DG.Tweening;
 
 public class Magnet : MonoBehaviour
-{ public Score score;
+{
+    public Score score;
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.tag == "scoreObject")
         {
-            collision.transform.DOMove(transform.position, 0.5f);
-            DOVirtual.DelayedCall(0.5f, () =>
+            Tween tween = collision.transform.DOMove(transform.position, 0.5f);
+            tween.OnComplete(() =>
             {
                 Destroy(collision.gameObject);
             });
+
+
+           /* DOVirtual.DelayedCall(0.50f, () =>
+            {
+                Destroy(collision.gameObject);
+            });*/
             score.UpdateScore(collision.transform.GetComponent<Coin>().point);
         }
     }
-    
+
 }

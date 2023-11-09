@@ -67,7 +67,6 @@
     <Compile Include="Assets\Script\Coin.cs" />
     <Compile Include="Assets\Script\Score.cs" />
     <Compile Include="Assets\Script\TurnToYellowBear.cs" />
-    <Compile Include="Assets\Script\MagnifyPlayer.cs" />
     <Compile Include="Assets\Script\Heart.cs" />
     <Compile Include="Assets\Script\HpBar.cs" />
   </ItemGroup>
