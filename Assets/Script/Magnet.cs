@@ -21,7 +21,7 @@ public class Magnet : MonoBehaviour
             {
                 Destroy(collision.gameObject);
             });*/
-            score.UpdateScore(collision.transform.GetComponent<Coin>().point);
+            score.UpdateScore(collision.transform.GetComponent<ScoreObject>().point);
         }
     }
 

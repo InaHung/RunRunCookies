@@ -11,12 +11,10 @@ GameObject:
   - component: {fileID: 668609617707427018}
   - component: {fileID: 668609617707427021}
   - component: {fileID: 668609617707427030}
-  - component: {fileID: 668609617707427017}
-  - component: {fileID: 668609617707427016}
   - component: {fileID: 668609617707427019}
   m_Layer: 0
   m_Name: "\u8B8A\u9EC3\u718A"
-  m_TagString: Untagged
+  m_TagString: turnToYellowBear
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,48 +102,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.43
---- !u!114 &668609617707427017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 668609617707427020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57364fe7438ed18429ee49d2bdb9187f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myCollider: {fileID: 668609617707427030}
-  objectCollider: {fileID: 668609617707427016}
-  yellowBear: {fileID: 7526719537995541196, guid: ae5e7616792b2f0478c9ac7f6006366a, type: 3}
-  renderer: {fileID: 668609617707427021}
---- !u!61 &668609617707427016
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 668609617707427020}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 13.803627, y: 1.1495641}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.81, y: 0.86}
-    newSize: {x: 0.81, y: 0.86}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 26.387177, y: 4.343316}
-  m_EdgeRadius: 0
 --- !u!50 &668609617707427019
 Rigidbody2D:
   serializedVersion: 4

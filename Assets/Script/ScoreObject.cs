@@ -4,7 +4,7 @@ using UnityEngine;
 
 using System;
 
-public class Coin : MonoBehaviour
+public class ScoreObject : MonoBehaviour
 {
    
     public int point;

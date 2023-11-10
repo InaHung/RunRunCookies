@@ -13,8 +13,8 @@ public class Map : MonoBehaviour
     private int sceneIndex;
     public float slowTime;
     public float sprintSpeed;
-
     private float originMoveSpeed;
+    Tween originSpeedTween;
 
     private void Awake()
     {
@@ -62,8 +62,12 @@ public class Map : MonoBehaviour
     public void TimeFast()
     {
         moveSpeed = sprintSpeed;
+        if (originSpeedTween != null)
+        {
+            originSpeedTween.Kill();
+        }
 
-        DOVirtual.DelayedCall(2f, () =>
+        originSpeedTween=DOVirtual.DelayedCall(2f, () =>
         {
             moveSpeed = originMoveSpeed;
             Debug.Log(moveSpeed);

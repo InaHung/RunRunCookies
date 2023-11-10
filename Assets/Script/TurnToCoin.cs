@@ -9,7 +9,7 @@ public class TurnToCoin : MonoBehaviour
     public Collider2D myCollider;
     public Collider2D barrierCollider;
     public SpriteRenderer renderer;
-    public Coin coin;
+    public ScoreObject coin;
 
     public void Awake()
     {
