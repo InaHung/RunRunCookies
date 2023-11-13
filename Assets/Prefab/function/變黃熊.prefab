@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 668609617707427021}
   - component: {fileID: 668609617707427030}
   - component: {fileID: 668609617707427019}
+  - component: {fileID: -1808506573381204025}
   m_Layer: 0
   m_Name: "\u8B8A\u9EC3\u718A"
-  m_TagString: turnToYellowBear
+  m_TagString: turnObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,3 +124,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &-1808506573381204025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668609617707427020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac3f5e199ad3d34458c04cffedf2dd7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnSettings:
+  - tag: jelly
+    insteadObject: {fileID: 7526719537995541196, guid: ae5e7616792b2f0478c9ac7f6006366a, type: 3}
+  time: 3

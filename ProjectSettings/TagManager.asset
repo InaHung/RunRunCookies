@@ -14,9 +14,7 @@ TagManager:
   - magnet
   - sprint
   - magnify
-  - turnToSilver
   - turnToBlueBear
-  - turnToYellowBear
   - turnObject
   layers:
   - Default

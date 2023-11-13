@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     public Map map;
     public GameObject magnet;
     public GameObject turnToBear;
-    //public TurnToObjectCollider turnToObjectCollider;  
+    public TurnToObjectCollider turnToObjectCollider;  
     Tween turnToNormal;
     Tween turnObjectColliderTween;
     Tween turnObjectColliderTween3;
@@ -145,7 +145,7 @@ public class Player : MonoBehaviour
 
         }
 
-        /*if (collision.transform.tag == "turnObject")
+        if (collision.transform.tag == "turnObject")
         {
             TurnObject turnObject = collision.GetComponent<TurnObject>();
             turnToObjectCollider.turnSettings = turnObject.turnSettings;
@@ -160,10 +160,10 @@ public class Player : MonoBehaviour
             {
                 turnToObjectCollider.gameObject.SetActive(false);
             });
-        }*/
+        }
 
 
-        if (collision.transform.tag == "turnToSilver")
+        /*if (collision.transform.tag == "turnToSilver")
         {
             listIndex = 0;
             turnToBear.SetActive(true);
@@ -209,7 +209,7 @@ public class Player : MonoBehaviour
                  turnToBear.SetActive(false);
              });
 
-        }
+        }*/
         if (collision.transform.tag == "magnet")
         {
             Destroy(collision.gameObject);
