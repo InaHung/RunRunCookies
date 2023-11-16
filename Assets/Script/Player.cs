@@ -21,11 +21,13 @@ public class Player : MonoBehaviour
     public Map map;
     public GameObject magnet;
     public GameObject turnToBear;
-    public TurnToObjectCollider turnToObjectCollider;  
+    public TurnToObjectCollider turnToObjectCollider;
+    public SceneController sceneController;
     Tween turnToNormal;
     Tween turnObjectColliderTween;
     Tween turnObjectColliderTween3;
     public int listIndex;
+
 
 
 
@@ -42,7 +44,14 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            sceneController.TransitionToBonus();
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            sceneController.TransitionToBase();
+        }
 
         switch (curState)
         {
@@ -161,6 +170,7 @@ public class Player : MonoBehaviour
                 turnToObjectCollider.gameObject.SetActive(false);
             });
         }
+
 
 
         /*if (collision.transform.tag == "turnToSilver")

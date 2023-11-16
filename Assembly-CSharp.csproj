@@ -60,17 +60,23 @@
     <Compile Include="Assets\Script\Barrier.cs" />
     <Compile Include="Assets\Script\Scene.cs" />
     <Compile Include="Assets\Script\Magnet.cs" />
+    <Compile Include="Assets\Script\Fire.cs" />
     <Compile Include="Assets\Script\TurnToObjectCollider.cs" />
     <Compile Include="Assets\Script\Player.cs" />
     <Compile Include="Assets\Script\TweenSample.cs" />
     <Compile Include="Assets\Script\CoinSpawner.cs" />
     <Compile Include="Assets\Script\TurnToCoin.cs" />
     <Compile Include="Assets\Script\ScoreObject.cs" />
+    <Compile Include="Assets\Script\MainCamera.cs" />
     <Compile Include="Assets\Script\Score.cs" />
     <Compile Include="Assets\Script\TurnToBear.cs" />
     <Compile Include="Assets\Script\TurnObject.cs" />
     <Compile Include="Assets\Script\Heart.cs" />
     <Compile Include="Assets\Script\HpBar.cs" />
+    <Compile Include="Assets\Script\CameraCheckPoint.cs" />
+    <Compile Include="Assets\Script\TimeBar.cs" />
+    <Compile Include="Assets\Script\Bonus.cs" />
+    <Compile Include="Assets\Script\SceneController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

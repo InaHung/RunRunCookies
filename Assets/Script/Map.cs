@@ -39,7 +39,7 @@ public class Map : MonoBehaviour
     {
         MapMove();
     }
-    void MapMove()
+    public void MapMove()
     {
         transform.position -= new Vector3(moveSpeed * Time.deltaTime, 0, 0);
     }
@@ -52,6 +52,7 @@ public class Map : MonoBehaviour
         createPosition += newScene.radius;
         sceneIndex++;
     }
+
     public void TimeSlow()
     {
         Time.timeScale = slowTime;

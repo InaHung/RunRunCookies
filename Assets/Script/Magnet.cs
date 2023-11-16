@@ -6,9 +6,11 @@ using DG.Tweening;
 public class Magnet : MonoBehaviour
 {
     public Score score;
+    public HpBar hpBar;
+    
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.tag == "scoreObject")
+        if (collision.transform.tag == "scoreObject"|| collision.transform.tag == "heart")
         {
             string objName = collision.name;
             Tween tween = collision.transform.DOMove(transform.position, 0.5f);
@@ -22,11 +24,8 @@ public class Magnet : MonoBehaviour
                 Destroy(collision.gameObject);
             });
 
-
-            /* DOVirtual.DelayedCall(0.50f, () =>
-             {
-                 Destroy(collision.gameObject);
-             });*/
+            hpBar.TreatSetHp(collision.transform.GetComponent<Heart>().plusHp);
+            
             score.UpdateScore(collision.transform.GetComponent<ScoreObject>().point);
         }
     }

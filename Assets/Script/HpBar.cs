@@ -10,6 +10,7 @@ public class HpBar : MonoBehaviour
     public int maxHp;
     public int curHp;
     public Tween hpDecreasingTween;
+    public float duringTime;
 
     private void Awake()
     {
@@ -41,7 +42,7 @@ public class HpBar : MonoBehaviour
     }
     public void HpDecreasing()
     {
-        hpDecreasingTween=DOVirtual.Float(curHp, 0, curHp * 3, (hp) =>
+        hpDecreasingTween=DOVirtual.Float(curHp, 0, duringTime, (hp) =>
 
              {
                  curHp = (int)hp;

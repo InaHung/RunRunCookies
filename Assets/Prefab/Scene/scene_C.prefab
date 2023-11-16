@@ -22502,6 +22502,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 0e043729860f61d4db82c569447f5ec0, type: 3}
+    - target: {fileID: 1722212319992117448, guid: 25597be82c41e4b438da505191d3b4d5, type: 3}
+      propertyPath: time
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722212319992117448, guid: 25597be82c41e4b438da505191d3b4d5, type: 3}
+      propertyPath: turnSettings.Array.data[0].insteadObject
+      value: 
+      objectReference: {fileID: 8191163384962601099, guid: 5b9ea645da0b49e4896adb7244e0a9f5, type: 3}
     - target: {fileID: 3754753094078502990, guid: 25597be82c41e4b438da505191d3b4d5, type: 3}
       propertyPath: m_Name
       value: turnToCoin
@@ -22513,6 +22521,10 @@ PrefabInstance:
     - target: {fileID: 3859671706713507198, guid: 25597be82c41e4b438da505191d3b4d5, type: 3}
       propertyPath: m_Name
       value: jellyJump_1 .
+      objectReference: {fileID: 0}
+    - target: {fileID: 5509183550140666165, guid: 25597be82c41e4b438da505191d3b4d5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6500815164368265012, guid: 25597be82c41e4b438da505191d3b4d5, type: 3}
       propertyPath: m_RootOrder
@@ -22561,63 +22573,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 282689977788207327, guid: 25597be82c41e4b438da505191d3b4d5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 25597be82c41e4b438da505191d3b4d5, type: 3}
---- !u!1 &962892648416862645 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3754753094078502990, guid: 25597be82c41e4b438da505191d3b4d5, type: 3}
-  m_PrefabInstance: {fileID: 4127392690509838843}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &714818786
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 962892648416862645}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 4.1417007, y: 0.6623816}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.81, y: 0.78}
-    newSize: {x: 0.74, y: 0.77}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 6.3565216, y: 2.8035393}
-  m_EdgeRadius: 0
---- !u!114 &714818785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 962892648416862645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a66f0e563d7bde42b9ce445accdfaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myCollider: {fileID: 5212812922688564104}
-  barrierCollider: {fileID: 714818786}
-  renderer: {fileID: 3630076488594912548}
-  coin: {fileID: 8191163384962601099, guid: 5b9ea645da0b49e4896adb7244e0a9f5, type: 3}
---- !u!212 &3630076488594912548 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 803873420416879839, guid: 25597be82c41e4b438da505191d3b4d5, type: 3}
-  m_PrefabInstance: {fileID: 4127392690509838843}
-  m_PrefabAsset: {fileID: 0}
---- !u!58 &5212812922688564104 stripped
-CircleCollider2D:
-  m_CorrespondingSourceObject: {fileID: 8147240925618967155, guid: 25597be82c41e4b438da505191d3b4d5, type: 3}
-  m_PrefabInstance: {fileID: 4127392690509838843}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7165501035736557263 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6500815164368265012, guid: 25597be82c41e4b438da505191d3b4d5, type: 3}
