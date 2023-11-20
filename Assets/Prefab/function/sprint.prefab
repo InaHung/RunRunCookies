@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5845294430619058580}
   - component: {fileID: 5845294430619058578}
   - component: {fileID: 5845294430619058579}
+  - component: {fileID: 4940300738497605515}
   - component: {fileID: 5845294430619058577}
   m_Layer: 0
   m_Name: sprint
@@ -102,6 +103,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.455
+--- !u!114 &4940300738497605515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5845294430619058581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d83e13fd5ee0cc4b9283012000dfbda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprintTime: 2
 --- !u!50 &5845294430619058577
 Rigidbody2D:
   serializedVersion: 4

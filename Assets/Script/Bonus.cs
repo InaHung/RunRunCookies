@@ -5,20 +5,11 @@ using UnityEngine;
 public class Bonus : MonoBehaviour
 {
     public Map map;
-    private void Awake()
-    {
-        //map.MapMove();
-    }
+    public float bonusTime;
 
-
-    public int sorting = 500;
-    [ContextMenu("ChangeSorting")]
-    public void ChangeSorting()
+    private void Update()
     {
-        SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
-        foreach(var renderer in spriteRenderers)
-        {
-            renderer.sortingOrder = sorting;
-        }
+        transform.position -= new Vector3(map.moveSpeed * Time.deltaTime, 0, 0);
     }
+    
 }

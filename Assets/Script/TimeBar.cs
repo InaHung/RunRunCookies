@@ -19,17 +19,17 @@ public class TimeBar : MonoBehaviour
     }
     private void Update()
     {
-        
+
     }
     public void TimeDecreasing()
     {
         DOVirtual.Float(maxTime, 0, duringTime, (currentTime) =>
         {
             slider.value = (int)currentTime;
-            fill.color = gradient.Evaluate(currentTime);
+            fill.color = gradient.Evaluate(currentTime / maxTime);
         });
     }
-    
+
 
 
 }

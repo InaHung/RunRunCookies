@@ -20,6 +20,7 @@ TagManager:
   - cameraPointTwo
   - cameraPointThree
   - cameraPoint
+  - bonus
   layers:
   - Default
   - TransparentFX

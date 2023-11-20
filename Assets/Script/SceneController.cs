@@ -7,32 +7,34 @@ public class SceneController : MonoBehaviour
 {
     public GameObject baseScene;
     public GameObject bonusScene;
-    public SpriteRenderer toBaseSprite;
-    public SpriteRenderer toBonusSprite;
+    public SpriteRenderer toBaseRenderer;
+    public SpriteRenderer toBonusRenderer;
 
     public void TransitionToBase()
     {
-        baseScene.gameObject.SetActive(true);
-        toBaseSprite.gameObject.SetActive(true);
-        toBaseSprite.color = new Color(toBaseSprite.color.r, toBaseSprite.color.g, toBaseSprite.color.b, 0);
-        toBaseSprite.DOFade(1f, 1f).OnComplete(() =>
+
+        toBaseRenderer.gameObject.SetActive(true);
+        toBaseRenderer.color = new Color(toBaseRenderer.color.r, toBaseRenderer.color.g, toBaseRenderer.color.b, 0);
+        toBaseRenderer.DOFade(1f, 1f).OnComplete(() =>
         {
-            toBonusSprite.gameObject.SetActive(false);
-            bonusScene.SetActive(false);
-            toBaseSprite.gameObject.SetActive(false);
+            baseScene.gameObject.SetActive(true);
+            toBonusRenderer.gameObject.SetActive(false);
+            bonusScene.gameObject.SetActive(false);
+            toBaseRenderer.gameObject.SetActive(false);
         });
 
     }
 
     public void TransitionToBonus()
     {
-        bonusScene.SetActive(true);
-        toBonusSprite.gameObject.SetActive(true);
-        toBonusSprite.color = new Color(1, 1, 1, 0);
-        toBonusSprite.DOFade(1f, 1f).OnComplete(() =>
+        bonusScene.gameObject.SetActive(true);
+        toBonusRenderer.gameObject.SetActive(true);
+        toBonusRenderer.color = new Color(1, 1, 1, 0);
+        toBonusRenderer.DOFade(1f, 1f).OnComplete(() =>
         {
             baseScene.SetActive(false);
 
         });
+
     }
 }

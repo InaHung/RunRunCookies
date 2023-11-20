@@ -25,9 +25,9 @@ public class Player : MonoBehaviour
     public SceneController sceneController;
     Tween turnToNormal;
     Tween turnObjectColliderTween;
-    Tween turnObjectColliderTween3;
+   
     public int listIndex;
-
+   
 
 
 
@@ -44,9 +44,9 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            sceneController.TransitionToBonus();
+            ChangeState(State.Bonus);
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -77,6 +77,13 @@ public class Player : MonoBehaviour
                 if (Input.GetKeyUp(KeyCode.A))
                 {
                     ReturnToIdle();
+                }
+                break;
+            case State.Bonus:
+                if(Input.GetKeyDown(KeyCode.Space))
+                {
+                    //rigidbody.AddForce(new Vector2(0f,4f),ForceMode2D.Impulse);
+                    rigidbody.velocity = new Vector2(0f, 10f);
                 }
                 break;
         }
@@ -232,15 +239,17 @@ public class Player : MonoBehaviour
         }
         if (collision.transform.tag == "sprint")
         {
+            float sprintTime = collision.GetComponent<Sprint>().sprintTime;
             ChangeSpecialState(SpecialState.Sprint);
             Destroy(collision.gameObject);
-            map.TimeFast();
+            map.TimeFast(sprintTime);
 
             if (turnToNormal != null)
             {
                 turnToNormal.Kill();
             }
-            turnToNormal = DOVirtual.DelayedCall(2f, () =>
+           
+            turnToNormal = DOVirtual.DelayedCall(sprintTime, () =>
               {
                   ChangeSpecialState(SpecialState.Normal);
 
@@ -249,11 +258,12 @@ public class Player : MonoBehaviour
         }
         if (collision.transform.tag == "magnify")
         {
+            float magnifyTime = collision.GetComponent<Magnify>().magnifyTime;
             ChangeSpecialState(SpecialState.Magnify);
             transform.localScale = transform.localScale * 2;
             Destroy(collision.gameObject);
 
-            DOVirtual.DelayedCall(4f, () =>
+            DOVirtual.DelayedCall(magnifyTime, () =>
             {
                 ChangeSpecialState(SpecialState.Normal);
                 transform.localScale = originPlayerSize;
@@ -283,6 +293,19 @@ public class Player : MonoBehaviour
 
 
         }
+        if(collision.transform.tag=="bonus")
+        {
+            float bonusTime = collision.GetComponent<Bonus>().bonusTime;
+            ChangeState(State.Bonus);
+            sceneController.TransitionToBonus();
+            DOVirtual.DelayedCall(bonusTime, () =>
+             {
+                 ChangeState(State.Idle);
+                 sceneController.TransitionToBase();
+             });
+
+        }
+
 
 
 
@@ -305,13 +328,14 @@ public enum State
     Jump,
     Slide,
     TwiceJump,
-
+    Bonus,
 }
 public enum SpecialState
 {
     Normal,
     Sprint,
     Magnify,
+   
 }
 
 
