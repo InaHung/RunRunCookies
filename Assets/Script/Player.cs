@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     Vector2 originColliderOffset;
     Vector2 originColliderSize;
     Vector2 originPlayerSize;
+    float originGravityScale;
     public Score score;
     public HpBar hpBar;
     public Map map;
@@ -25,7 +26,7 @@ public class Player : MonoBehaviour
     public SceneController sceneController;
     Tween turnToNormal;
     Tween turnObjectColliderTween;
-   
+    public Animator playerAnimator;
     public int listIndex;
    
 
@@ -38,7 +39,13 @@ public class Player : MonoBehaviour
         originColliderOffset = collider.offset;
         originColliderSize = collider.size;
         originPlayerSize = transform.localScale;
+        
         turnToBear.SetActive(false);
+        sceneController.OnTransitionToBase += () =>
+        {
+            ChangeState(State.Idle);
+            
+        };
     }
 
 
@@ -59,7 +66,7 @@ public class Player : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     Jump();
-                    Debug.Log("¸õ" + map.transform.position);
+                    Debug.Log("¸õ");
                 }
                 if (Input.GetKey(KeyCode.A))
                 {
@@ -76,14 +83,16 @@ public class Player : MonoBehaviour
             case State.Slide:
                 if (Input.GetKeyUp(KeyCode.A))
                 {
+                    playerAnimator.SetTrigger("Walk");
+                    Debug.Log("walk");
                     ReturnToIdle();
                 }
                 break;
             case State.Bonus:
                 if(Input.GetKeyDown(KeyCode.Space))
                 {
-                    //rigidbody.AddForce(new Vector2(0f,4f),ForceMode2D.Impulse);
-                    rigidbody.velocity = new Vector2(0f, 10f);
+                    
+                    rigidbody.velocity = new Vector2(0f, 4f);
                 }
                 break;
         }
@@ -105,6 +114,7 @@ public class Player : MonoBehaviour
     {
         collider.size = new Vector2(collider.size.x, collider.size.y / 3);
         collider.offset = new Vector2(collider.offset.x, colliderOffset);
+        playerAnimator.SetTrigger("Slide");
         ChangeState(State.Slide);
 
     }
@@ -116,9 +126,10 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
 
         {
+            playerAnimator.SetTrigger("Jump");
             rigidbody.velocity = new Vector2(0, jumpHeight);
             ChangeState(State.Jump);
-
+            
         }
 
 
@@ -127,7 +138,7 @@ public class Player : MonoBehaviour
     {
         rigidbody.velocity = new Vector2(0, jumpHeight);
         ChangeState(State.TwiceJump);
-
+        playerAnimator.SetTrigger("TwiceJump");
 
 
     }
@@ -135,9 +146,11 @@ public class Player : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.tag == "floor")
+        if (collision.transform.tag == "floor"&&curState!=State.Slide&&curState!=State.Idle)
         {
-            Debug.Log("­°¸¨" + map.transform.position);
+           // Debug.Log("­°¸¨" + map.transform.position);
+            playerAnimator.SetTrigger("Walk");
+            Debug.Log("walk");
             ReturnToIdle();
 
         }
@@ -295,22 +308,17 @@ public class Player : MonoBehaviour
         }
         if(collision.transform.tag=="bonus")
         {
-            float bonusTime = collision.GetComponent<Bonus>().bonusTime;
+        
             ChangeState(State.Bonus);
             sceneController.TransitionToBonus();
-            DOVirtual.DelayedCall(bonusTime, () =>
-             {
-                 ChangeState(State.Idle);
-                 sceneController.TransitionToBase();
-             });
-
+           
         }
 
 
 
-
-
     }
+   
+    
     public void ChangeState(State nextState)
     {
         curState = nextState;

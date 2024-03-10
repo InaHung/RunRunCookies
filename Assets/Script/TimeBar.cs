@@ -9,11 +9,10 @@ public class TimeBar : MonoBehaviour
     public Slider slider;
     public Gradient gradient;
     public Image fill;
-    public float maxTime;
-    public float duringTime;
+    public Bonus bonus;
     private void Awake()
     {
-        slider.maxValue = maxTime;
+        slider.maxValue = bonus.bonusTime;
         fill.color = gradient.Evaluate(1f);
         TimeDecreasing();
     }
@@ -23,10 +22,10 @@ public class TimeBar : MonoBehaviour
     }
     public void TimeDecreasing()
     {
-        DOVirtual.Float(maxTime, 0, duringTime, (currentTime) =>
+        DOVirtual.Float(bonus.bonusTime, 0, bonus.bonusTime, (currentTime) =>
         {
             slider.value = (int)currentTime;
-            fill.color = gradient.Evaluate(currentTime / maxTime);
+            fill.color = gradient.Evaluate(currentTime / bonus.bonusTime);
         });
     }
 

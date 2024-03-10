@@ -6,8 +6,6 @@ public class TurnToObjectCollider : MonoBehaviour
 {
     public TurnSetting[] turnSettings;
     
-
-
     
     public void OnTriggerEnter2D(Collider2D collision)
     {
