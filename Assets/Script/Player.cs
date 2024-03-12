@@ -7,7 +7,9 @@ using DG.Tweening;
 public class Player : MonoBehaviour
 {
     public float jumpHeight;
-
+    public float bonusjump;
+    public float bonusDown;
+    public float originGravity;
     public Rigidbody2D rigidbody;
     public BoxCollider2D collider;
     public float colliderOffset;
@@ -24,7 +26,7 @@ public class Player : MonoBehaviour
     public GameObject turnToBear;
     public TurnToObjectCollider turnToObjectCollider;
     public SceneController sceneController;
-    Tween turnToNormal;
+    Tween turnToNormalTween;
     Tween turnObjectColliderTween;
     public Animator playerAnimator;
     public int listIndex;
@@ -44,7 +46,8 @@ public class Player : MonoBehaviour
         sceneController.OnTransitionToBase += () =>
         {
             ChangeState(State.Idle);
-            
+             rigidbody.gravityScale = originGravity;
+            transform.position += new Vector3(0, 5f);
         };
     }
 
@@ -89,12 +92,17 @@ public class Player : MonoBehaviour
                 }
                 break;
             case State.Bonus:
+                
                 if(Input.GetKeyDown(KeyCode.Space))
                 {
-                    
-                    rigidbody.velocity = new Vector2(0f, 4f);
+                    rigidbody.velocity = new Vector2(0f, bonusjump);
+                }
+                if(Input.GetKeyUp(KeyCode.Space))
+                {
+                    rigidbody.velocity = new Vector2(0, bonusDown);
                 }
                 break;
+                
         }
 
 
@@ -131,26 +139,21 @@ public class Player : MonoBehaviour
             ChangeState(State.Jump);
             
         }
-
-
     }
     public void TwiceJump()
     {
         rigidbody.velocity = new Vector2(0, jumpHeight);
         ChangeState(State.TwiceJump);
         playerAnimator.SetTrigger("TwiceJump");
-
-
     }
+   
 
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag == "floor"&&curState!=State.Slide&&curState!=State.Idle)
         {
-           // Debug.Log("­°¸¨" + map.transform.position);
             playerAnimator.SetTrigger("Walk");
-            Debug.Log("walk");
             ReturnToIdle();
 
         }
@@ -190,56 +193,6 @@ public class Player : MonoBehaviour
                 turnToObjectCollider.gameObject.SetActive(false);
             });
         }
-
-
-
-        /*if (collision.transform.tag == "turnToSilver")
-        {
-            listIndex = 0;
-            turnToBear.SetActive(true);
-            Destroy(collision.gameObject);
-            if (turnObjectColliderTween != null)
-            {
-                turnObjectColliderTween.Kill();
-            }
-
-            turnObjectColliderTween = DOVirtual.DelayedCall(1f, () =>
-             {
-                 turnToBear.SetActive(false);
-             });
-
-        }
-        if (collision.transform.tag == "turnToYellowBear")
-        {
-            listIndex = 1;
-            turnToBear.SetActive(true);
-
-            Destroy(collision.gameObject);
-            if (turnObjectColliderTween3 != null)
-            {
-                turnObjectColliderTween3.Kill();
-            }
-            DOVirtual.DelayedCall(3f, () =>
-            {
-                turnToBear.SetActive(false);
-            });
-
-        }
-        if (collision.transform.tag == "turnToBlueBear")
-        {
-            listIndex = 2;
-            turnToBear.SetActive(true);
-            Destroy(collision.gameObject);
-            if (turnObjectColliderTween3 != null)
-            {
-                turnObjectColliderTween3.Kill();
-            }
-            turnObjectColliderTween3 = DOVirtual.DelayedCall(3f, () =>
-             {
-                 turnToBear.SetActive(false);
-             });
-
-        }*/
         if (collision.transform.tag == "magnet")
         {
             Destroy(collision.gameObject);
@@ -257,12 +210,12 @@ public class Player : MonoBehaviour
             Destroy(collision.gameObject);
             map.TimeFast(sprintTime);
 
-            if (turnToNormal != null)
+            if (turnToNormalTween != null)
             {
-                turnToNormal.Kill();
+                turnToNormalTween.Kill();
             }
            
-            turnToNormal = DOVirtual.DelayedCall(sprintTime, () =>
+            turnToNormalTween = DOVirtual.DelayedCall(sprintTime, () =>
               {
                   ChangeSpecialState(SpecialState.Normal);
 
@@ -304,14 +257,14 @@ public class Player : MonoBehaviour
 
             }
 
-
         }
         if(collision.transform.tag=="bonus")
         {
         
             ChangeState(State.Bonus);
             sceneController.TransitionToBonus();
-           
+            originGravity = rigidbody.gravityScale;
+            rigidbody.gravityScale = 0;
         }
 
 

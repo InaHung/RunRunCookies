@@ -6,7 +6,7 @@ using System;
 
 public class SceneController : MonoBehaviour
 {
-    public GameObject baseScene;
+    public Map map;
     public Bonus bonusScene;
     public SpriteRenderer toBaseRenderer;
     public SpriteRenderer toBonusRenderer;
@@ -19,29 +19,35 @@ public class SceneController : MonoBehaviour
     }
     public void TransitionToBase()
     {
-        OnTransitionToBase();
+       
         toBaseRenderer.gameObject.SetActive(true);
         toBaseRenderer.color = new Color(toBaseRenderer.color.r, toBaseRenderer.color.g, toBaseRenderer.color.b, 0);
         toBaseRenderer.DOFade(1f, 1f).OnComplete(() =>
         {
-            baseScene.gameObject.SetActive(true);
+            foreach(var scene in map.aliveScenes)
+            {
+                scene.isbonus = false;
+            }
+            map.gameObject.SetActive(true);
             toBonusRenderer.gameObject.SetActive(false);
             bonusScene.gameObject.SetActive(false);
             toBaseRenderer.gameObject.SetActive(false);
+            OnTransitionToBase();
         });
 
     }
 
     public void TransitionToBonus()
     {
-         bonusScene.gameObject.SetActive(true);
+        bonusScene.gameObject.SetActive(true);
         toBonusRenderer.gameObject.SetActive(true);
-        toBonusRenderer.color = new Color(1, 1, 1, 0);
-        toBonusRenderer.DOFade(1f, 1f).OnComplete(() =>
+        foreach (var scene in map.aliveScenes)
         {
-            baseScene.SetActive(false);
-
-        });
+            scene.isbonus = true;
+        }
+        map.gameObject.SetActive(false);
+        toBonusRenderer.color = new Color(1, 1, 1, 0);  //ÅÜ³z©ú
+        toBonusRenderer.DOFade(1f, 0.5f);
 
     }
 }

@@ -7,7 +7,6 @@ using DG.Tweening;
 public class Map : MonoBehaviour
 {
     public float moveSpeed;
-    
     public List<Scene> scenes = new List<Scene>();
     public List<Scene> aliveScenes = new List<Scene>();
     private float createPosition;
@@ -73,7 +72,7 @@ public class Map : MonoBehaviour
         originSpeedTween=DOVirtual.DelayedCall(sprintTime, () =>
         {
             moveSpeed = originMoveSpeed;
-            Debug.Log(moveSpeed);
+            Debug.LogWarning(moveSpeed);
         });
        
     }

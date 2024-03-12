@@ -10,23 +10,23 @@ public class Magnet : MonoBehaviour
     
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.tag == "scoreObject"|| collision.transform.tag == "heart")
+        if (collision.transform.tag == "scoreObject")
         {
-            string objName = collision.name;
             Tween tween = collision.transform.DOMove(transform.position, 0.5f);
-            tween.OnUpdate(() =>
+            tween.OnComplete(() =>
             {
-                if (collision == null)
-                    Debug.LogError("Null OBJ:" + objName);
-            });
+                Destroy(collision.gameObject);
+            }); 
+            score.UpdateScore(collision.transform.GetComponent<ScoreObject>().point);
+        }
+        if (collision.transform.tag == "heart")
+        {
+            Tween tween = collision.transform.DOMove(transform.position, 0.5f);
             tween.OnComplete(() =>
             {
                 Destroy(collision.gameObject);
             });
-
             hpBar.TreatSetHp(collision.transform.GetComponent<Heart>().plusHp);
-            
-            score.UpdateScore(collision.transform.GetComponent<ScoreObject>().point);
         }
     }
 
