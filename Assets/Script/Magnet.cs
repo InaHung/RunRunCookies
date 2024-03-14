@@ -7,7 +7,13 @@ public class Magnet : MonoBehaviour
 {
     public Score score;
     public HpBar hpBar;
-    
+    public Player player;
+    public Vector3 myPosition;
+
+    private void Update()
+    {
+        transform.position = player.transform.position + myPosition;
+    }
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.tag == "scoreObject")

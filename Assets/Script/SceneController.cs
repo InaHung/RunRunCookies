@@ -7,6 +7,7 @@ using System;
 public class SceneController : MonoBehaviour
 {
     public Map map;
+    public HpBar hp;
     public Bonus bonusScene;
     public SpriteRenderer toBaseRenderer;
     public SpriteRenderer toBonusRenderer;
@@ -29,6 +30,7 @@ public class SceneController : MonoBehaviour
                 scene.isbonus = false;
             }
             map.gameObject.SetActive(true);
+            hp.gameObject.SetActive(true);
             toBonusRenderer.gameObject.SetActive(false);
             bonusScene.gameObject.SetActive(false);
             toBaseRenderer.gameObject.SetActive(false);
@@ -46,6 +48,7 @@ public class SceneController : MonoBehaviour
             scene.isbonus = true;
         }
         map.gameObject.SetActive(false);
+        hp.gameObject.SetActive(false);
         toBonusRenderer.color = new Color(1, 1, 1, 0);  //ÅÜ³z©ú
         toBonusRenderer.DOFade(1f, 0.5f);
 

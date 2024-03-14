@@ -624,6 +624,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneListIndex: 2
   radius: 50
+  isbonus: 0
 --- !u!1 &1874919811460937184
 GameObject:
   m_ObjectHideFlags: 0
@@ -22710,6 +22711,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 901787149}
     m_Modifications:
+    - target: {fileID: 592870178065359192, guid: 022770319bae7ef4c829fa02e09a3afb, type: 3}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5737789626950708680, guid: 022770319bae7ef4c829fa02e09a3afb, type: 3}
       propertyPath: m_Name
       value: flower (1)
@@ -22772,6 +22777,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 901787149}
     m_Modifications:
+    - target: {fileID: 592870178065359192, guid: 022770319bae7ef4c829fa02e09a3afb, type: 3}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5737789626950708680, guid: 022770319bae7ef4c829fa02e09a3afb, type: 3}
       propertyPath: m_Name
       value: flower (4)
@@ -22958,6 +22967,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 901787149}
     m_Modifications:
+    - target: {fileID: 592870178065359192, guid: 022770319bae7ef4c829fa02e09a3afb, type: 3}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5737789626950708680, guid: 022770319bae7ef4c829fa02e09a3afb, type: 3}
       propertyPath: m_Name
       value: flower (1)
@@ -23082,6 +23095,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 901787149}
     m_Modifications:
+    - target: {fileID: 592870178065359192, guid: 022770319bae7ef4c829fa02e09a3afb, type: 3}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5737789626950708680, guid: 022770319bae7ef4c829fa02e09a3afb, type: 3}
       propertyPath: m_Name
       value: flower
@@ -23206,6 +23223,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 901787149}
     m_Modifications:
+    - target: {fileID: 592870178065359192, guid: 022770319bae7ef4c829fa02e09a3afb, type: 3}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5737789626950708680, guid: 022770319bae7ef4c829fa02e09a3afb, type: 3}
       propertyPath: m_Name
       value: flower (5)
@@ -23702,6 +23723,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 901787149}
     m_Modifications:
+    - target: {fileID: 592870178065359192, guid: 022770319bae7ef4c829fa02e09a3afb, type: 3}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5737789626950708680, guid: 022770319bae7ef4c829fa02e09a3afb, type: 3}
       propertyPath: m_Name
       value: flower (2)
@@ -23764,6 +23789,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 901787149}
     m_Modifications:
+    - target: {fileID: 592870178065359192, guid: 022770319bae7ef4c829fa02e09a3afb, type: 3}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5737789626950708680, guid: 022770319bae7ef4c829fa02e09a3afb, type: 3}
       propertyPath: m_Name
       value: flower (3)
@@ -24012,6 +24041,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 901787149}
     m_Modifications:
+    - target: {fileID: 592870178065359192, guid: 022770319bae7ef4c829fa02e09a3afb, type: 3}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5737789626950708680, guid: 022770319bae7ef4c829fa02e09a3afb, type: 3}
       propertyPath: m_Name
       value: flower (2)
@@ -24772,6 +24805,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 901787149}
     m_Modifications:
+    - target: {fileID: 592870178065359192, guid: 022770319bae7ef4c829fa02e09a3afb, type: 3}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5737789626950708680, guid: 022770319bae7ef4c829fa02e09a3afb, type: 3}
       propertyPath: m_Name
       value: flower
@@ -24834,6 +24871,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 901787149}
     m_Modifications:
+    - target: {fileID: -3982939578072379408, guid: 39966ab7865d47b43aed3f3ad28f6622, type: 3}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5407683693000228639, guid: 39966ab7865d47b43aed3f3ad28f6622, type: 3}
       propertyPath: m_RootOrder
       value: 9

@@ -24,7 +24,11 @@ public class Map : MonoBehaviour
         foreach (var aliveScene in aliveScenes)
         {
             aliveScene.OnEnterCheckPoint += createNextScene;
-
+            aliveScene.onDestroyScene += (Scene) =>
+            {
+                aliveScenes.Remove(Scene);
+            };
+            
         }
         createPosition += aliveScenes[0].radius;
         for (int i = 1; i < aliveScenes.Count; i++)
@@ -33,8 +37,6 @@ public class Map : MonoBehaviour
         }
         sceneIndex = aliveScenes.Count;
     }
-
-    // Update is called once per frame
     void Update()
     {
         MapMove();
@@ -50,6 +52,11 @@ public class Map : MonoBehaviour
         createPosition += newScene.radius;
         newScene.transform.localPosition = new Vector3(createPosition, 0, 0);
         createPosition += newScene.radius;
+        aliveScenes.Add(newScene);
+        newScene.onDestroyScene += (Scene) =>
+        {
+            aliveScenes.Remove(Scene);
+        };
         sceneIndex++;
     }
 
@@ -72,7 +79,6 @@ public class Map : MonoBehaviour
         originSpeedTween=DOVirtual.DelayedCall(sprintTime, () =>
         {
             moveSpeed = originMoveSpeed;
-            Debug.LogWarning(moveSpeed);
         });
        
     }

@@ -7,6 +7,7 @@ using DG.Tweening;
 public class Scene : MonoBehaviour
 {
     public Action OnEnterCheckPoint;
+    public Action<Scene> onDestroyScene;
     public int sceneListIndex;
     public float radius = 15f;
     public bool isbonus;
@@ -14,8 +15,6 @@ public class Scene : MonoBehaviour
     {
         if (collision.transform.tag == "checkpoint")
         {
-
-            Debug.LogWarning(collision.name + " , " + name);
             if (OnEnterCheckPoint != null)
                 OnEnterCheckPoint();
         }
@@ -24,7 +23,12 @@ public class Scene : MonoBehaviour
     {
         if (collision.transform.tag == "checkpoint"&&!isbonus)
         {
-            Destroy(gameObject);
+            DOVirtual.DelayedCall(1f, () =>
+             {
+                 onDestroyScene(this);
+                 Destroy(gameObject);
+             });
+            
         }
 
     }

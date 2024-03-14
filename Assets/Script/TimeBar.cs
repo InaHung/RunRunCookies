@@ -24,9 +24,10 @@ public class TimeBar : MonoBehaviour
     {
         DOVirtual.Float(bonus.bonusTime, 0, bonus.bonusTime, (currentTime) =>
         {
+            
             slider.value = (int)currentTime;
             fill.color = gradient.Evaluate(currentTime / bonus.bonusTime);
-        });
+        }).SetEase(Ease.Linear);
     }
 
 

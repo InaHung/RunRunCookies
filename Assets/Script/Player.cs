@@ -23,14 +23,13 @@ public class Player : MonoBehaviour
     public HpBar hpBar;
     public Map map;
     public GameObject magnet;
-    public GameObject turnToBear;
     public TurnToObjectCollider turnToObjectCollider;
     public SceneController sceneController;
     Tween turnToNormalTween;
     Tween turnObjectColliderTween;
     public Animator playerAnimator;
     public int listIndex;
-   
+
 
 
 
@@ -41,12 +40,10 @@ public class Player : MonoBehaviour
         originColliderOffset = collider.offset;
         originColliderSize = collider.size;
         originPlayerSize = transform.localScale;
-        
-        turnToBear.SetActive(false);
         sceneController.OnTransitionToBase += () =>
         {
             ChangeState(State.Idle);
-             rigidbody.gravityScale = originGravity;
+            rigidbody.gravityScale = originGravity;
             transform.position += new Vector3(0, 5f);
         };
     }
@@ -92,17 +89,17 @@ public class Player : MonoBehaviour
                 }
                 break;
             case State.Bonus:
-                
-                if(Input.GetKeyDown(KeyCode.Space))
+
+                if (Input.GetKeyDown(KeyCode.Space))
                 {
                     rigidbody.velocity = new Vector2(0f, bonusjump);
                 }
-                if(Input.GetKeyUp(KeyCode.Space))
+                if (Input.GetKeyUp(KeyCode.Space))
                 {
                     rigidbody.velocity = new Vector2(0, bonusDown);
                 }
                 break;
-                
+
         }
 
 
@@ -137,7 +134,7 @@ public class Player : MonoBehaviour
             playerAnimator.SetTrigger("Jump");
             rigidbody.velocity = new Vector2(0, jumpHeight);
             ChangeState(State.Jump);
-            
+
         }
     }
     public void TwiceJump()
@@ -146,12 +143,12 @@ public class Player : MonoBehaviour
         ChangeState(State.TwiceJump);
         playerAnimator.SetTrigger("TwiceJump");
     }
-   
+
 
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.tag == "floor"&&curState!=State.Slide&&curState!=State.Idle)
+        if (collision.transform.tag == "floor" && curState != State.Slide && curState != State.Idle)
         {
             playerAnimator.SetTrigger("Walk");
             ReturnToIdle();
@@ -161,7 +158,7 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.tag == "scoreObject")
+        if (collision.transform.tag == "scoreObject"|| collision.transform.tag == "jelly")
         {
 
             ScoreObject coin = collision.gameObject.GetComponent<ScoreObject>();
@@ -214,7 +211,7 @@ public class Player : MonoBehaviour
             {
                 turnToNormalTween.Kill();
             }
-           
+
             turnToNormalTween = DOVirtual.DelayedCall(sprintTime, () =>
               {
                   ChangeSpecialState(SpecialState.Normal);
@@ -258,20 +255,21 @@ public class Player : MonoBehaviour
             }
 
         }
-        if(collision.transform.tag=="bonus")
+        if (collision.transform.tag == "bonus")
         {
-        
+            playerAnimator.SetTrigger("Bonus");
             ChangeState(State.Bonus);
             sceneController.TransitionToBonus();
             originGravity = rigidbody.gravityScale;
             rigidbody.gravityScale = 0;
+            Destroy(collision.gameObject);
         }
 
 
 
     }
-   
-    
+
+
     public void ChangeState(State nextState)
     {
         curState = nextState;
@@ -296,7 +294,7 @@ public enum SpecialState
     Normal,
     Sprint,
     Magnify,
-   
+
 }
 
 

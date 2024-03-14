@@ -17,7 +17,7 @@ public class MainCamera : MonoBehaviour
     {
         if(collision.tag=="cameraPoint")
         {
-            transform.DOLocalMove(cameraCheckPoint.checkPoint, 1f);
+             transform.DOLocalMove(cameraCheckPoint.checkPoint, 1f);
         } 
         
     }
